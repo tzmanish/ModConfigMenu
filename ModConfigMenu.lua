@@ -57,7 +57,7 @@ local function UpdateCheckBox( button, value )
 end
 
 local function ShowCurrentMenu( screen )
-  local rowStartX = 350
+  local rowStartX = 300
   local columnSpacingX = 600
   local itemLocationX = rowStartX
   local itemLocationY = 250
@@ -103,7 +103,7 @@ local function ShowCurrentMenu( screen )
       components[name .. "TextBox"] = CreateScreenComponent({ 
         Name = "BlankObstacle", 
         Scale = 1,
-        X = itemLocationX,
+        X = itemLocationX + itemSpacingX - 70,
         Y = itemLocationY,
         Group = "Combat_Menu" })
       CreateTextBox({ 
@@ -114,7 +114,7 @@ local function ShowCurrentMenu( screen )
         OffsetX = 0, OffsetY = 0,
         Font = "AlegrayaSansSCRegular",
         ShadowBlur = 0, ShadowColor = { 0, 0, 0, 1 }, ShadowOffset = { 0,  2 },
-        Justification = "Center"
+        Justification = "Right"
       })
       itemLocationX = itemLocationX + itemSpacingX
     end
@@ -131,28 +131,29 @@ local function ShowCurrentMenu( screen )
       components[name .. "CheckBox"].OnPressedFunctionName = "ModConfigMenu__ToggleBoolean"
       itemLocationX = previousItemLocationX + columnSpacingX
     elseif type(value) == "number" then
-      components[name .. "ButtonPlus"] = CreateScreenComponent({
-        Name = "LevelUpArrowRight",
+      components[name .. "ButtonMinus"] = CreateScreenComponent({
+        Name = "LevelUpArrowLeft",
         Scale = 1,
         X = itemLocationX - 40,
         Y = itemLocationY,
         Group = "CombatMenu"
       })
-      components[name .. "ButtonPlus"].MenuItemName = name
-      components[name .. "ButtonPlus"].OnPressedFunctionName = "ModConfigMenu__ButtonPlus"
-      components[name .. "ButtonMinus"] = CreateScreenComponent({
-        Name = "LevelUpArrowLeft",
+      components[name .. "ButtonMinus"].MenuItemName = name
+      components[name .. "ButtonMinus"].OnPressedFunctionName = "ModConfigMenu__ButtonMinus"
+
+      components[name .. "ButtonPlus"] = CreateScreenComponent({
+        Name = "LevelUpArrowRight",
         Scale = 1,
-        X = itemLocationX,
+        X = itemLocationX + 40,
         Y = itemLocationY,
         Group = "CombatMenu"
       })
-      components[name .. "ButtonMinus"].MenuItemName = name
-      components[name .. "ButtonMinus"].OnPressedFunctionName = "ModConfigMenu__ButtonMinus"
+      components[name .. "ButtonPlus"].MenuItemName = name
+      components[name .. "ButtonPlus"].OnPressedFunctionName = "ModConfigMenu__ButtonPlus"
       components[name .. "NumberText"] = CreateScreenComponent({
         Name = "BlankObstacle",
         Scale = 1,
-        X = itemLocationX + 40,
+        X = itemLocationX,
         Y = itemLocationY,
         Group = "Combat_Menu" })
       CreateTextBox({ 
