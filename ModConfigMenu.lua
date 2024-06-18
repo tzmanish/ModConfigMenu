@@ -89,7 +89,8 @@ local function ShowCurrentMenu( screen )
   })
 
   local itemsInRow = 0
-  for name, value in orderedPairs( currentMenu ) do
+  for _, name in ipairs( currentMenu ) do
+    value = currentMenu[name]
     local previousItemLocationX = itemLocationX
     if value == true or value == false or type(value) == "number" then
       itemsInRow = itemsInRow + 1
@@ -333,4 +334,3 @@ ModUtil.WrapBaseFunction("CreatePrimaryBacking", function ( baseFunc )
   Attach({ Id = components.ModConfigButton.Id, DestinationId = components.ModConfigButton, OffsetX = 500, OffsetY = 500 })
   baseFunc()
 end, ModConfigMenu)
-

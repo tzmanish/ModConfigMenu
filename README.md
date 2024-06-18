@@ -6,7 +6,8 @@ other Hades mods via an in-game UI, so you can change
 them on the fly.
 
 Features:
- - UI for toggling boolean values
+ - UI for boolean values toggle
+ - UI for adjustment of numerical values
  - Minimal setup
 
 Settings are saved in your save file, so they're only
@@ -17,8 +18,11 @@ To use, add config like the following to your mod:
 
     local config = {
       ModName = "Your Mod's name",
+      "YourFirstSetting","YourThirdSetting", -- only these settings will be exposed in the mod menu, in this order
+
       YourFirstSetting = true,
-      YourSecondSetting = false 
+      YourSecondSetting = false,
+      YourThirdSetting = 5,
     }
     ModConfigMenu.Register(config)
 
